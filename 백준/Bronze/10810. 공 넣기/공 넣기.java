@@ -22,9 +22,12 @@ public class Main {
         }
 
         for(int i = 0; i < N; i++){
-            System.out.print(basket[i] + " ");
+            bw.write(basket[i] + " ");
         }
 
+        bw.flush();
+        bw.close();
+        br.close();
 
 
     }
