@@ -7,15 +7,11 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int N = Integer.parseInt(br.readLine());
-        int seed = 3;
 
-        for(int i = 0; i < N - 1; i++){
-            seed = (seed * 2) - 1;
-        }
+        int size = (1 << N) + 1; // 2 ^ N + 1
+        int result = size * size;
 
-        System.out.println(seed * seed);
-
-
+        System.out.println(result);
 
 
     }
