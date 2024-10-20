@@ -8,11 +8,11 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        int A = Integer.parseInt(st.nextToken());
-        int B = Integer.parseInt(st.nextToken());
-        int V = Integer.parseInt(st.nextToken());
+        double A = Integer.parseInt(st.nextToken());
+        double B = Integer.parseInt(st.nextToken());
+        double V = Integer.parseInt(st.nextToken());
 
-        int days = (V - B - 1) / (A - B) + 1;
+        int days = (int) Math.ceil((V - B) / (A - B));
         System.out.println(days);
 
 
