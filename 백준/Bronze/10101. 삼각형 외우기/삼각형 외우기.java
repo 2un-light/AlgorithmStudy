@@ -1,34 +1,25 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int[] angle = new int[3];
-
-        angle[0] = Integer.parseInt(br.readLine());
-        angle[1] = Integer.parseInt(br.readLine());
-        angle[2] = Integer.parseInt(br.readLine());
-
-        if((angle[0] == 60) && (angle[1] == 60) && (angle[2] == 60)){
-            System.out.println("Equilateral");
-        }else{
-            if(Arrays.stream(angle).sum() == 180){
-               //두 각이 같은 경우
-                if((angle[0] == angle[1]) || (angle[1] == angle[2]) || (angle[2] == angle[0])){
-                    System.out.println("Isosceles");
-                    //아닌경우
-                }else{
-                    System.out.println("Scalene");
-                }
-
-            }else{
-                System.out.println("Error");
-            }
+        int angle1 = Integer.parseInt(br.readLine());
+        int angle2 = Integer.parseInt(br.readLine());
+        int angle3 = Integer.parseInt(br.readLine());
+        
+        int sum = angle1 + angle2 + angle3;
+        
+        if(sum != 180){
+            System.out.println("Error");
+        } else if (angle1 == 60 && angle2 == 60 && angle3 == 60) {
+            System.out.println("Equilateral");  // 정삼각형
+        } else if (angle1 == angle2 || angle2 == angle3 || angle1 == angle3) {
+            System.out.println("Isosceles");  // 이등변삼각형
+        } else {
+            System.out.println("Scalene");  // 부등변삼각형
         }
-
     }
 }
