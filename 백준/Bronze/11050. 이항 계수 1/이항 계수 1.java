@@ -11,11 +11,13 @@ public class Main {
         int n = Integer.parseInt(st.nextToken());
         int k = Integer.parseInt(st.nextToken());
 
+        // n! / (n-k)!과 같다.
         int result = 1;
         for(int i = n; i > n - k; i--){
             result *= i;
         }
 
+        // k!
         int result2 = 1;
         for(int i = k; i > 0; i--){
             result2 *= i;
