@@ -11,19 +11,16 @@ public class Main {
         int n = Integer.parseInt(st.nextToken());
         int k = Integer.parseInt(st.nextToken());
 
-        // n! / (n-k)!과 같다.
-        int numerator  = 1;
-        for(int i = n; i > n - k; i--){
-            numerator  *= i;
+        System.out.println(binomialCoefficient(n, k));
+
+    }
+
+    public static int binomialCoefficient(int n, int k) {
+        int result = 1;
+        for(int i = 0; i < k; i++) {
+            result *= (n - i);
+            result /= (i + 1);
         }
-
-        // k!
-        int denominator  = 1;
-        for(int i = k; i > 0; i--){
-            denominator  *= i;
-        }
-
-        System.out.println(numerator /denominator);
-
+        return result;
     }
 }
