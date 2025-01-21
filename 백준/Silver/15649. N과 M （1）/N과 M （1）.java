@@ -1,26 +1,25 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
 
 public class Main {
-    static int N, M;
+    static int N;
+    static int M;
     static int[] result;
-    static boolean[] checked;
-
+    static boolean[] marked;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
 
-        N = Integer.parseInt(st.nextToken());
-        M = Integer.parseInt(st.nextToken());
+        String[] input = br.readLine().split(" ");
+        N = Integer.parseInt(input[0]);
+        M = Integer.parseInt(input[1]);
         result = new int[M];
-        checked = new boolean[N + 1];
-        backtracking(0);
+        marked = new boolean[N + 1];
+        solve(0);
 
     }
 
-    public static void backtracking(int depth){
+    public static void solve(int depth){
         if(depth == M){
             for(int num : result){
                 System.out.print(num + " ");
@@ -30,14 +29,12 @@ public class Main {
         }
 
         for(int i = 1; i <= N; i++){
-            if(!checked[i]){
-                checked[i] = true;
+            if(!marked[i]){
+                marked[i] = true;
                 result[depth] = i;
-                backtracking(depth + 1);
-                checked[i] = false;
+                solve(depth + 1);
+                marked[i] = false;
             }
         }
-
     }
-
 }
