@@ -27,7 +27,7 @@ class MinHeap {
         return min;
     }
 
-    public void heapify(int index){
+    private void heapify(int index){
         int smallest = index;
         int left = 2 * index;
         int right = 2 * index + 1;
@@ -42,7 +42,7 @@ class MinHeap {
 
     }
 
-    public void swap(int a, int b) {
+    private void swap(int a, int b) {
         int temp = heap[a];
         heap[a] = heap[b];
         heap[b] = temp;
