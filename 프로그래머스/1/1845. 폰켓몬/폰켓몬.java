@@ -13,14 +13,10 @@ public class Solution {
         Map<Integer, Integer> pokemons = new HashMap<>();
 
         for(int num : nums) {
-            pokemons.put(num, pokemons.getOrDefault(num, 0) + 1);
+            pokemons.put(num, 1);
         }
 
-        if(pokemons.size() >= nums.length / 2) {
-            return nums.length / 2;
-        }else {
-            return pokemons.size();
-        }
+        return pokemons.size() > nums.length / 2 ? nums.length / 2 : pokemons.size();
 
     }
 }
