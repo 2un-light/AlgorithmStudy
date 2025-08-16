@@ -1,8 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -11,55 +9,39 @@ public class Main {
         StringBuilder sb = new StringBuilder();
 
         int M = Integer.parseInt(br.readLine());
+        int bit = 0;
 
-        Set<Integer> set = new HashSet<>();
-        for(int i = 0; i < M; i++) {
+        for (int i = 0; i < M; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
+            String cmd = st.nextToken();
 
-            String command = st.nextToken();
-            int num = 0;
-            if(st.hasMoreTokens()) {
-                num = Integer.parseInt(st.nextToken());
-            }
+            int x = 0;
+            if(st.hasMoreTokens()) x = Integer.parseInt(st.nextToken());
 
-            switch (command) {
-                case "add" :
-                    set.add(num);
+            switch (cmd) {
+                case "add":
+                    bit |= (1 << (x - 1));
                     break;
                 case "remove":
-                    if(set.contains(num)){
-                        set.remove(num);
-                    }
+                    bit &= ~(1 << (x - 1));
                     break;
                 case "check":
-                    if(set.contains(num)) {
-                        sb.append(1).append("\n");
-                    }else {
-                        sb.append(0).append("\n");
-                    }
+                    sb.append((bit & (1 << (x - 1))) != 0 ? 1 : 0).append("\n");
                     break;
                 case "toggle":
-                    if (set.contains(num)) {
-                        set.remove(num);
-                    }else {
-                        set.add(num);
-                    }
+                    bit ^= (1 << (x - 1));
                     break;
                 case "all":
-                    set.clear();
-                    for(int s = 1; s <= 20; s++) {
-                        set.add(s);
-                    }
+                    bit = (1 << 20) - 1;
                     break;
                 case "empty":
-                    set.clear();
+                    bit = 0;
+                    break;
 
             }
-
 
         }
 
         System.out.println(sb);
-
     }
 }
