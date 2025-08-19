@@ -17,12 +17,12 @@ public class Main {
 
             for (int i = 0; i < 3; i++) {
                 int num = Integer.parseInt(st.nextToken());
-                triangle[i] = (int) Math.pow(num, 2);
+                triangle[i] = num * num;
             }
 
             Arrays.sort(triangle);
 
-            if(Arrays.stream(triangle).sum() == 0) {
+            if(triangle[0] == 0 && triangle[1] == 0 && triangle[2] == 0) {
                 break;
             }
 
