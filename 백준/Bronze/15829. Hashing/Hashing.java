@@ -8,10 +8,13 @@ public class Main {
         int L = Integer.parseInt(br.readLine());
         String str = br.readLine();
 
-        int result = 0;
+        long M = 1234567891;
+        long result = 0;
+        long r = 1;
         for(int i = 0; i < L; i++) {
             int number = str.charAt(i) - 'a' + 1;
-            result += (number * Math.pow(31, i));
+            result = (result + number * r) % M;
+            r = (r * 31) % M;
         }
 
         System.out.println(result);
