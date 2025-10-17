@@ -1,29 +1,28 @@
-public class Solution {
-    public static void main(String[] args) {
-        String name = "JAZ";
-        System.out.println(solution(name));
-    }
+import java.util.*;
 
-    public static int solution(String name) {
-        int cnt = 0;
-        int move = name.length() - 1;
-
-        for(int i = 0; i < name.length(); i++) {
-            char c = name.charAt(i);
-            int upDown = Math.min(c - 'A', 'Z' - c + 1);
-            cnt += upDown;
-
-            //좌우 이동 최소값 계산
+class Solution {
+    public int solution(String name) {
+        int answer = 0;
+        int length = name.length();
+        
+        //위아래 이동
+        for(int i = 0; i < length; i++) {
+            char ch = name.charAt(i);
+            answer += Math.min(ch - 'A', 'Z' - ch + 1);
+        }
+        
+        //좌우 이동
+        int move = length - 1;
+        for(int i = 0; i < length; i++) {
             int next = i + 1;
-            while(next < name.length() && name.charAt(next) == 'A') {
+            //다음 글자가 A인 경우 스킵
+            while(next < length && name.charAt(next) == 'A') {
                 next++;
             }
-
-            move = Math.min(move, i * 2 + name.length() - next);
-            move = Math.min(move, (name.length() - next) * 2 + i);
-
+            move = Math.min(move, i + length - next + Math.min(i, length - next));
         }
-
-        return cnt + move;
+        
+        
+        return answer += move;
     }
 }
