@@ -1,46 +1,37 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
-public class Solution {
-
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        String str = br.readLine();
-
-        System.out.println(solution(str));
-
-    }
-
-    public static int solution(String s) {
-        int minLength = s.length();
-
-        for(int step = 1; step <= s.length() / 2; step++) {
+class Solution {
+    public int solution(String s) {
+        int answer = s.length();
+        
+        for(int step = 1; step <= s.length(); step++) {
             StringBuilder sb = new StringBuilder();
+            //첫 덩어리
             String prev = s.substring(0, step);
-            int cnt = 1;
-
-            for(int j = step; j < s.length(); j+= step) {
-                int end = Math.min(j + step, s.length());
-                String current = s.substring(j, end);
-
+            int count = 1;
+        
+            
+            for(int j = step; j < s.length(); j+=step) {
+                String current = s.substring(j, Math.min(j+step, s.length()));
+                
+                
                 if(prev.equals(current)) {
-                    cnt++;
+                    count++;
                 }else {
-                    if(cnt > 1) sb.append(cnt);
+                    if(count > 1) sb.append(count);
                     sb.append(prev);
                     prev = current;
-                    cnt = 1;
+                    count = 1;
                 }
+                
             }
-            //남은 문자열 처리
-            if(cnt > 1) sb.append(cnt);
+            
+            //마지막 덩어리 처리
+            if(count > 1) sb.append(count);
             sb.append(prev);
-
-            minLength = Math.min(minLength, sb.length());
+            
+            answer = Math.min(answer, sb.length());
         }
-
-        return minLength;
+        
+        
+        return answer;
     }
 }
