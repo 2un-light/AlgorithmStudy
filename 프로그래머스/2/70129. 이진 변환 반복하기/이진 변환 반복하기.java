@@ -1,22 +1,24 @@
 class Solution {
     public int[] solution(String s) {
         int count = 0;
-        int removed = 0;
+        int zeroCount = 0;
         
         while(!s.equals("1")) {
-            int originalLength = s.length();
-            s = s.replace("0", ""); //0 제거
-            int newLength = s.length();
+            int prevLength = s.length();
             
-            removed += (originalLength - newLength);
+            //0제거
+            s = s.replace("0","");
+            zeroCount += prevLength - s.length();
             
-            s = Integer.toBinaryString(newLength);
+            //0제거 후 길이 이진변환
+            int currentLength = s.length();
+            s = Integer.toBinaryString(currentLength);
             
             count++;
+            
         }
         
-        return new int[]{count, removed};
-            
+        return new int[]{count, zeroCount};
         
     }
 }
