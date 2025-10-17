@@ -1,34 +1,32 @@
-import java.util.Stack;
+import java.util.*;
+import java.io.*;
 
-public class Solution {
-    public static void main(String[] args) {
-        String number = "1924";
-        int k = 2;
-        System.out.println(solution(number, k));
-    }
-
-    public static String solution(String number, int k) {
-        StringBuilder sb = new StringBuilder();
+class Solution {
+    public String solution(String number, int k) {
         Stack<Character> stack = new Stack<>();
-
-        for(int i = 0; i < number.length(); i++) {
-            char current = number.charAt(i);
-
-            while(!stack.isEmpty() && k > 0 && stack.peek() < current) {
+        
+        for(char c : number.toCharArray()) {
+            while(!stack.isEmpty() && k > 0 && stack.peek() < c) {
                 stack.pop();
                 k--;
             }
-            stack.push(current);
+            stack.push(c);
         }
-
+        
+        //아직 다 못지우면 뒤에서 제거
         while(k > 0) {
             stack.pop();
             k--;
         }
-
-        for(char digit : stack) {
-            sb.append(digit);
+        
+        StringBuilder sb = new StringBuilder();
+        for(char c : stack) {
+            sb.append(c);
         }
+        
+        
+        
         return sb.toString();
+        
     }
 }
