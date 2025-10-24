@@ -3,16 +3,18 @@ import java.util.*;
 class Solution {
     public int solution(String t, String p) {
         int answer = 0;
+        int pLen = p.length();
+        long numP = Long.parseLong(p);
         
-        int len = p.length();
-        
-        for(int i = 0; i <= t.length() - len; i++) {
-            String sub = t.substring(i, i + len);
+        for(int i = 0; i <= t.length() - pLen; i++) {
+            String sub = t.substring(i, i + pLen);
+            long numSub = Long.parseLong(sub);
             
-            if(sub.compareTo(p) <= 0) {
+            if(numSub <= numP) {
                 answer++;
             }
         }
+        
         
         return answer;
     }
