@@ -5,16 +5,17 @@ class Solution {
 
         for(int r = 0; r <= query_row; r++) {
             for(int c = 0; c <= r; c++) {
-                double overflow = (dp[r][c] - 1.0) / 2.0;
 
-                if(overflow > 0) {
+                if(dp[r][c] > 1) {
+                    double overflow = (dp[r][c] - 1.0) / 2.0;
                     dp[r + 1][c] += overflow;
                     dp[r + 1][c + 1] += overflow;
                 }
+
+                
             }
         }
 
         return Math.min(1.0, dp[query_row][query_glass]);
-        
     }
 }
