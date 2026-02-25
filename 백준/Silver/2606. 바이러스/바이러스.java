@@ -1,56 +1,64 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Main {
-    public static int v, e;
-    public static int[] parent;
 
-    public static int getParent(int x) {
-        if(parent[x] == x) return x;
-        return parent[x] = getParent(parent[x]);
-    }
+    static int N, M;
+    static List<Integer>[] graph;
+    static boolean[] visited;
 
-    public static void unionParent(int a, int b) {
-        a = getParent(a);
-        b = getParent(b);
-        if(a < b) parent[b] = a;
-        else parent[a] = b;
-    }
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        v = Integer.parseInt(br.readLine());
-        e = Integer.parseInt(br.readLine());
-        parent = new int[v + 1];
+        N = Integer.parseInt(br.readLine());
+        M = Integer.parseInt(br.readLine());
 
-        for(int i = 1; i <= v; i++) {
-            parent[i] = i;
+        graph = new ArrayList[N + 1];
+        for(int i = 1; i <= N; i++) {
+            graph[i] = new ArrayList<>();
         }
 
-        for(int i = 0; i < e; i++) {
+        visited = new boolean[N + 1];
+
+        for(int i = 0; i < M; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
+            int x = Integer.parseInt(st.nextToken());
+            int y = Integer.parseInt(st.nextToken());
 
-            int a = Integer.parseInt(st.nextToken());
-            int b = Integer.parseInt(st.nextToken());
+            graph[x].add(y);
+            graph[y].add(x);
 
-            unionParent(a, b);
         }
 
-        for(int i = 1; i <= v; i++) {
-            getParent(i);
-        }
+        System.out.println(bfs(1));
 
-        int cnt = 0;
-        for(int i = 2; i <= v; i++) {
-            if(parent[i] == 1) {
-                cnt++;
+
+    }
+
+    private static int bfs(int start) {
+        Queue<Integer> queue = new LinkedList<>();
+        queue.offer(start);
+        visited[start] = true;
+
+        int count = 0;
+        while(!queue.isEmpty()) {
+            int cur = queue.poll();
+
+            for(int next : graph[cur]) {
+                if(visited[next]) continue;
+
+                visited[next] = true;
+                count++;
+                queue.offer(next);
             }
         }
 
-        System.out.println(cnt);
+        return count;
+
 
     }
+
 }
