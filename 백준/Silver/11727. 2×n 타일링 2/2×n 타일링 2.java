@@ -7,7 +7,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int n = Integer.parseInt(br.readLine());
-        int[] dp = new int[n + 1];
+        int[] dp = new int[n  + 1];
         dp[1] = 1;
         if(n >= 2) dp[2] = 3;
 
@@ -16,6 +16,5 @@ public class Main {
         }
 
         System.out.println(dp[n]);
-
     }
 }
