@@ -1,40 +1,20 @@
+import java.io.*;
 import java.util.*;
 
 class Solution {
     public int[] solution(long n) {
-        int[] answer = {};
+        List<Integer> answer =  new ArrayList<>();
 
-        //처음 나눌 수 정하기
-        int length = String.valueOf(n).length();
-        answer = new int[length];
-        
-        int div = 1;
-        for(int i = 0; i < length - 1; i++) {
-            div *= 10;
-        }
-        
-        int idx = 0;
-        while(true) {
-            int num = (int) (n / div);
-            answer[idx] = num;
-            idx++;
+        while(n != 0) {
+            int result = (int) (n % 10);
+            answer.add(result);
             
-                   
-            if(idx > length - 1) {
-                break;
-            }
+            n /= 10;
             
-            n = n % div;
-            div /= 10;
-
         }
         
-        //뒤집기
-        int[] answer2 = new int[length];
-        for(int i = 0; i < length; i++) {
-            answer2[i] = answer[length - 1 - i];
-        }
+        return answer.stream().mapToInt(Integer::intValue).toArray();
         
-        return answer2;
+        
     }
 }
