@@ -1,33 +1,22 @@
 import java.util.*;
+import java.io.*;
 
 class Solution {
     boolean solution(String s) {
-        
-        boolean answer = true;
 
-        int sum = 0;
-        
+        Stack<Character> stack = new Stack<>();
         for(int i = 0; i < s.length(); i++) {
-            if(s.charAt(i) == '(') {
-                sum++;
-            }else if(s.charAt(i) == ')'){
-                sum--;
+            char c = s.charAt(i);
+            if(c == '(') {
+                stack.push(c);
+            }else {
+                if(stack.isEmpty()) {
+                    return false;
+                }
+                stack.pop();
             }
-            
-            if(sum < 0) {
-                return false;
-            }
-            
-            
         }
         
-        if(sum == 0) {
-            return true;
-        }
-        
-        return false;
-        
-        
-        
+        return stack.isEmpty();
     }
 }
