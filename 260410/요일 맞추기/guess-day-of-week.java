@@ -19,7 +19,7 @@ public class Main {
         //월 차이 계산
         int dayDiff = 0;
         if(m1 < m2) {
-            for(int i = m1; i > m2; i++) {
+            for(int i = m1; i < m2; i++) {
                 dayDiff += months[i];
             }
         }else {
