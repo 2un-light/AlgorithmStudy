@@ -7,16 +7,16 @@ public class Main {
         // Please write your code here.
         dp = new int[n + 1];
         dp[1] = 1;
-        dp[2] = 1;
+        if(n >= 2) dp[2] = 1;
 
         System.out.println(fibbo(n));
     
     }
 
     public static int fibbo(int n) {
-
     
         if(dp[n] != 0) return dp[n];
+        if(n <= 2) return dp[n] = 1;
 
         return dp[n] = fibbo(n - 1) + fibbo(n - 2);
         
