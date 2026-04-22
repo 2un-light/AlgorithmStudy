@@ -2,6 +2,7 @@ import java.io.*;
 import java.util.*;
 
 class Solution {
+    //중복 제거
     static Set<Set<String>> result = new HashSet<>();
     
     public int solution(String[] user_id, String[] banned_id) {
@@ -9,6 +10,7 @@ class Solution {
         return result.size();
     }
     
+    //백트래킹 수행
     private void dfs(String[] user_id, String[] banned_id, int depth, Set<String> current) {
         if(depth == banned_id.length) {
             result.add(new HashSet<>(current));
@@ -28,6 +30,7 @@ class Solution {
         }
     }
     
+    //매칭 검사
     private boolean isMatch(String user, String banned) {
         if(user.length() != banned.length()) {
             return false;
