@@ -17,14 +17,14 @@ class Solution {
         //시작점
         path.add("ICN");
         
-        //bfs 탐색
-        bfs("ICN", tickets, 0);
+        //dfs 탐색
+        dfs("ICN", tickets, 0);
         
         return answer.toArray(String[]::new);
     }
     
     //dfs 탐색 메서드
-    private boolean bfs(String current, String[][] tickets, int depth) {
+    private boolean dfs(String current, String[][] tickets, int depth) {
         if(depth == tickets.length) {
             answer = new ArrayList<>(path);
             return true;
@@ -37,7 +37,7 @@ class Solution {
                 path.add(tickets[i][1]);
                 
                 
-                if(bfs(tickets[i][1], tickets, depth + 1)) {
+                if(dfs(tickets[i][1], tickets, depth + 1)) {
                     return true;
                 }
                 //백트래킹
