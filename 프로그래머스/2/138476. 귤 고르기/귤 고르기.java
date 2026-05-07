@@ -12,7 +12,7 @@ class Solution {
         Collections.sort(counts, Collections.reverseOrder());
         
         int sum = 0;
-        int kind = 0;
+        int kind = 0; 
         
         for(int count : counts) {
             sum += count;
